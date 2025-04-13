@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Подпишись на Telegram!</title>
+  <title>Подпишись и получи промокод!</title>
   <style>
     body {
       margin: 0;
@@ -33,6 +33,21 @@
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
+    a {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #3cff00;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #3cff00;
+    }
     .promo {
       font-size: 2rem;
       font-weight: bold;
@@ -43,30 +58,31 @@
       margin-top: 20px;
       display: none;
     }
-    a {
-      color: #3cff00;
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Подпишись на мой Telegram канал!</h1>
     <p>
-      Для получения промокода для активации меню, подпишись, пожалуйста, на наш Telegram канал.
-      Вы увидите промокод через несколько секунд.
+      Для получения промокода для активации меню подписывайтесь на наш Telegram канал.
     </p>
-    <p>
-      Ссылка: <a href="https://t.me/YourTelegramChannel" target="_blank">https://t.me/kqunixbtw</a>
-    </p>
+    <!-- Ссылка открывается в новой вкладке, чтобы пользователь не покидал ваш сайт -->
+    <a id="telegramLink" href="https://t.me/kqunixbtw" target="_blank">Подписаться</a>
+    <div class="status" id="statusMessage"></div>
     <div class="promo" id="promoCode">FREE123</div>
   </div>
   
   <script>
-    // Выводим промокод через 3 секунды после загрузки страницы
-    window.addEventListener("load", function() {
+    // При нажатии на ссылку запускаем таймер 3 секунды.
+    document.getElementById("telegramLink").addEventListener("click", function() {
+      // Если пользователь нажал на ссылку, показываем сообщение, что подписка в процессе.
+      const status = document.getElementById("statusMessage");
+      status.textContent = "Подписка оформляется, ожидайте промокод...";
+      
+      // Через 3 секунды показываем промокод
       setTimeout(function() {
         document.getElementById("promoCode").style.display = "block";
+        status.textContent = "Промокод получен!";
       }, 3000);
     });
   </script>
